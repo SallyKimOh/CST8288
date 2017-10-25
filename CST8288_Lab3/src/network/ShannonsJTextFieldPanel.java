@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ import javax.swing.event.ChangeListener;
  * @author Saeil Kim
  *
  */
-public class ShannonsJTextFieldPanel extends JPanel  implements ShannonsController {
+public class ShannonsJTextFieldPanel extends JPanel {
 
 	private JPanel pane;
 	GridBagConstraints gc;
@@ -39,7 +40,7 @@ public class ShannonsJTextFieldPanel extends JPanel  implements ShannonsControll
 	JTextField text3;
 
 	/**
-	 * Default constructor without argument
+	 * Default constructor with argument
 	 */
 	public ShannonsJTextFieldPanel(ShannonsController sc){
 		
@@ -54,10 +55,13 @@ public class ShannonsJTextFieldPanel extends JPanel  implements ShannonsControll
 		text1 = new JTextField(20);
 		text2 = new JTextField(20);
 		text3 = new JTextField(20);
+		
+		System.out.println("AAAAAA");
 
 	}
 	
 	public void createPanel(){
+
 		text3.setEnabled(false);
 
 		text1.setText(String.valueOf(0.0));
@@ -119,32 +123,6 @@ public class ShannonsJTextFieldPanel extends JPanel  implements ShannonsControll
 		text3.setText(String.valueOf(mdr));
 	}
 
-	/* (non-Javadoc)
-	 * @see network.ShannonsController#AddObserver(java.util.Observer)
-	 */
-	@Override
-	public void AddObserver(Observer os) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see network.ShannonsController#setBandwidth(double)
-	 */
-	@Override
-	public void setBandwidth(double bandwidth) {
-		// TODO Auto-generated method stub
-		text1.setText(String.valueOf(bandwidth));
-	}
-
-	/* (non-Javadoc)
-	 * @see network.ShannonsController#setSignalToNoise(double)
-	 */
-	@Override
-	public void setSignalToNoise(double signalToNoise) {
-		// TODO Auto-generated method stub
-		text2.setText(String.valueOf(signalToNoise));
-	}
 	
 	
 }

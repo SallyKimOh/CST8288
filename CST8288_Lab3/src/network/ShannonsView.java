@@ -3,27 +3,14 @@
  */
 package network;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Insets;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * @author Saeil Kim
@@ -31,9 +18,15 @@ import javax.swing.event.ChangeListener;
  */
 public class ShannonsView extends JFrame implements Observer {
 
-	int w = 280;
-	int h = 20;
-	int gap = 10;
+//	int w = 280;
+//	int h = 20;
+//	int gap = 10;
+
+	private JFrame mainFrame;
+	private JPanel firstPane;
+	private JPanel secondPane;
+	private ShannonsController shCont;
+
 
 	/**
 	 * @throws HeadlessException
@@ -43,43 +36,56 @@ public class ShannonsView extends JFrame implements Observer {
 		super();
 	}
 
-
-	public void BorderTest(){
+	private JFrame mainFrame2;
+	private JPanel topPane = new JPanel(new GridBagLayout());
+	private JPanel pane = new JPanel(new GridBagLayout());
+	private JPanel pane1 = new JPanel(new GridBagLayout());
+	   
+	public void run() {
+		mainFrame = new JFrame("Shannon's Theorem");
+		mainFrame.setSize(600,400);
+		mainFrame.setLayout(new GridLayout(2, 1));
+//
+//		setContentPane(createContentPanel());
 		
-		setBounds(100,200,630,500);
-		setLayout(null);
-		setTitle("Border Example ( SEXY.PE.KR )");
-
-		JPanel p = new JPanel();
-		p.setBounds(gap,gap,w,h);
-		p.setBorder(new BevelBorder(BevelBorder.RAISED));
-		p.setLayout(new BorderLayout());
-		p.add(new JLabel("BevelBorder(BevelBorder.RAISED)",JLabel.CENTER));
-		add(p);
-
-		JPanel p2 = new JPanel();
-		p2.setBounds(gap*2+w,gap,w,h);
-		p2.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		p2.setLayout(new BorderLayout());
-		p2.add(new JLabel("BevelBorder(BevelBorder.LOWERED)",JLabel.CENTER));
-		add(p2);
+		setDefaultCloseOperation( DISPOSE_ON_CLOSE);
+		setContentPane(createContentPanel());
+		pack();
+//		setLocationRelativeTo(null);
+//		setVisible(true);
 		
-		JPanel p3 = new JPanel();
-		p3.setBounds(gap,gap*2+h,w,h);
-		p3.setBorder(new LineBorder(Color.red, 5));
-		p3.setLayout(new BorderLayout());
-		p3.add(new JLabel("LineBorder(Color.red,5)",JLabel.CENTER));
-		add(p3);
+		
+		firstPane = createContentPanel();
+		
+//		secondPane = createContentPanel();
+		
+//		setController(shCont);
+//		shCont.AddObserver(this);
 
-		setVisible(true);
+		
+//		ShannonsJTextFieldPanel sc = new ShannonsJTextFieldPanel(shCont);
+//		sc.setBandwidth(100);
+//		sc.setSignalToNoise(100);
+//		sc.createPanel();
+		
+//		setController(new SchannonsController());
+//		ShannonsJTextFieldPanel textFieldPanel = new ShannonsJTextFieldPanel(sc);
+		
+
+//		setDefaultCloseOperation( DISPOSE_ON_CLOSE);
+//		setContentPane(createGUI());
+//		pack();
+		
+		
+//	    mainFrame.add(sc);
+	    mainFrame.add(firstPane);
+//	    mainFrame.add(secondPane);
+	    mainFrame.setLocationRelativeTo(null);
+	    mainFrame.setVisible(true);	    
+		
 	}
-
-
-	   private JFrame mainFrame2;
-	   private JPanel topPane = new JPanel(new GridBagLayout());
-	   private JPanel pane = new JPanel(new GridBagLayout());
-	   private JPanel pane1 = new JPanel(new GridBagLayout());
 	
+/*	
 	public void run() {
 		
 		mainFrame2 = new JFrame("Shannon's Theorem");
@@ -88,6 +94,7 @@ public class ShannonsView extends JFrame implements Observer {
 
 		pane.setSize(600,100);
 		pane1.setSize(600,300);
+		
 	      
 		JLabel label1 = new JLabel("Bandwidth(Hz)");
 		JLabel label2 = new JLabel("Signal To Noise(db)");
@@ -341,158 +348,37 @@ public class ShannonsView extends JFrame implements Observer {
 	    mainFrame2.setLocationRelativeTo(null);
 	    mainFrame2.setVisible(true);	    
 	    
-	    
-	    
-	    
-		
 		
 	}
-/*
-	public void run() {
+	
+*/	
+	private JPanel createContentPanel() {
+	
+	JPanel pane = new JPanel(new GridBagLayout());
+//		return pane;
 		
-		JFrame frame = new JFrame("Shannon's Theorem");
-//		JOptionPane.showMessageDialog(null, "FDS","", JOptionPane.PLAIN_MESSAGE);
-
-
-		JPanel jpMain = new JPanel(new BorderLayout());
-		JLabel label1 = new JLabel("Bandwidth(Hz)");
-		JLabel label2 = new JLabel("Signal To Noise(db)");
-		JLabel label3 = new JLabel("Maximum Data Rate(bps):");
+		ShannonsJTextFieldPanel sc = new ShannonsJTextFieldPanel(new ShannonsTheorem());
 		
-//		JTextField text1 = new JTextField("0.0");
-//		JTextField text2 = new JTextField("0.0");
-//		JTextField text3 = new JTextField("0.0");
-//		text3.setEnabled(false);
-//		
-//		JPanel yPanel = new JPanel(new BorderLayout());
-//		JLabel yLabel1 = new JLabel("Bandwidth(Hz)");
-//		JLabel yLabel2 = new JLabel("Signal To Noise(db)");
-//		JLabel yLabel3 = new JLabel("Maximum Data Rate(kbps):");
-//
-//		JSlider jsliper1 = new JSlider();
-//		JSlider jsliper2 = new JSlider();
-//		JSlider jsliper3 = new JSlider();
-//		
-//		jsliper1.setMaximum(9300); //최대값
-//		jsliper1.setMinimum(0); //최소값
-//		jsliper1.setValue(0); //초기값
-//		jsliper1.setMajorTickSpacing(1000); //큰 눈금 간격
-//		jsliper1.setMinorTickSpacing(300); //작은 눈금 간격
-//
-//		jsliper1.setPaintLabels(true); //값 표시
-//		jsliper1.setPaintTicks(true); //눈금 표시	
-//		
-//		jsliper2.setMaximum(3000); //최대값
-//		jsliper3.setMinimum(0); //최소값
-//		jsliper3.setValue(0); //초기값
-//		jsliper3.setMajorTickSpacing(300); //큰 눈금 간격
-//		jsliper3.setMinorTickSpacing(300); //작은 눈금 간격
-//
-//		jsliper2.setPaintLabels(true); //값 표시
-//		jsliper2.setPaintTicks(true); //눈금 표시	
-//
-//		jsliper3.setMaximum(10000); //최대값
-//		jsliper3.setMinimum(0); //최소값
-//		jsliper3.setValue(0); //초기값
-//		jsliper3.setMajorTickSpacing(1000); //큰 눈금 간격
-//		jsliper3.setMinorTickSpacing(200); //작은 눈금 간격
-//
-//		jsliper3.setPaintLabels(true); //값 표시
-//		jsliper3.setPaintTicks(true); //눈금 표시	
-//		jsliper3.setEnabled(false);
-//		
-
-
+		sc.createPanel();
+		pane.add(sc);
+		return pane;
 		
-		
-		String[] msg = {"아래버튼", "위버튼", "오른쪽버튼", "왼쪽버튼", "가운데버튼"};
-
-		Color[] color = {new Color(255,128,0), new Color(251,33,13),new Color(15,223,0),new Color(72,22,243),new Color(236,12,253)};
-
-		String[] location = {"South", "North","East","West","Center"};
-
-		Button[] btn = new Button[msg.length]; //배열
-
-		Button btn1 = new Button("South");
-
-		 
-
-		Panel panelNorth = new Panel(); // 패널(위) 생성
-
-		Panel panelSouth = new Panel(); // 패널(아래) 생성
-
-//		panelNorth.add(label1); // panel 안에 btn.length의 버튼 삽입
-//		panelNorth.add(label2); // panel 안에 btn.length의 버튼 삽입
-//		panelNorth.add(label3); // panel 안에 btn.length의 버튼 삽입
-
-		jpMain.add(label1); // panel 안에 btn.length의 버튼 삽입
-		jpMain.add(label2); // panel 안에 btn.length의 버튼 삽입
-		
-		
-		
-//		frame.add(panelNorth, "North"); // add로 패널 추가
-		frame.add(jpMain); // add로 패널 추가
-
-//		frame.add(panelSouth, "South"); // add로 패널 추가
-
-		 
-
-		
-		
-		
-		// 프레임 크기 지정
-		frame.setSize(500,300);
-
-		// 프레임 보이기
-		frame.setVisible(true);
-
-		// swing에만 있는 X버튼 클릭시 종료
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		GridBagLayout layout = new GridBagLayout();
-		setLayout(layout);
-		
-		
-	}
-*/
-	private void setController(ShannonsController sc) {
 		
 	}
 	
 	
+	public void setController(ShannonsController sc) {
+		shCont = new ShannonsTheorem();
+	}
 	
-	/**
-	 * @param gc
-	 */
-//	public ShannonsView(GraphicsConfiguration gc) {
-//		super(gc);
-//		// TODO Auto-generated constructor stub
-//	}
-
-	/**
-	 * @param title
-	 * @throws HeadlessException
-	 */
-//	public ShannonsView(String title) throws HeadlessException {
-//		super(title);
-//		// TODO Auto-generated constructor stub
-//	}
-
-	/**
-	 * @param title
-	 * @param gc
-	 */
-//	public ShannonsView(String title, GraphicsConfiguration gc) {
-//		super(title, gc);
-//		// TODO Auto-generated constructor stub
-//	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		System.out.println("update calling view");
 
 	}
 

@@ -104,8 +104,22 @@ public class ShannonsTheorem implements ShannonsController {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("AFDS");
 
 		ShannonsView view = new ShannonsView();
+		ShannonsModel model = new ShannonsModel();
+		ShannonsTheorem shMain = new ShannonsTheorem();
+		
+		shMain.setModel(model);
+		
+		shMain.AddObserver(view);
+		
+		
+//		view.setController(this);
+
+//		shCont = new ShannonsJTextFieldPanel(sc);
+		
+		
 		view.run();
 //		view.BorderTest();
 	}

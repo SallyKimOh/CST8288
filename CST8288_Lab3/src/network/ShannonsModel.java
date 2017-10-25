@@ -44,6 +44,10 @@ public class ShannonsModel extends Observable {
 	 */
 	public void setBandwidth(double bandwidth) {
 		this.bandwidth = bandwidth;
+
+		setChanged();
+        notifyObservers(bandwidth);
+
 	}
 
 
@@ -61,6 +65,8 @@ public class ShannonsModel extends Observable {
 	 */
 	public void setSignalToNoise(double signalToNoise) {
 		this.signalToNoise = signalToNoise;
+		setChanged();
+        notifyObservers(bandwidth);
 	}
 
 	/**
